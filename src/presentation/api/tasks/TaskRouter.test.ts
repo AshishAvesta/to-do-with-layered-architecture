@@ -1,8 +1,8 @@
 // test/presentation/api/routers/TaskRouter.test.ts
 import request from 'supertest';
 import express from 'express';
-import { TaskRouter } from '../../../../src/presentation/api/routers/TaskRouter';
-import { TaskController } from '../../../../src/presentation/api/controllers/TaskController';
+import { TaskRouter } from './TaskRouter';
+import { TaskController } from './TaskController';
 import { ICreateTask } from '../../../application/usecases/ICreateTask';
 
 describe('TaskRouter', () => {

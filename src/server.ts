@@ -1,9 +1,8 @@
 // server.ts
-import { createApp, registerRoutes } from './presentation/api/app';
+import {App} from './presentation/api/App';
 
-const app = createApp();
 
-registerRoutes(app);
+const app = App.create();
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {

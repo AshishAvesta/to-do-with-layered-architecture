@@ -1,6 +1,6 @@
 // src/presentation/api/routers/TaskRouter.ts
 import express from 'express';
-import { TaskController } from '../controllers/TaskController';
+import { TaskController } from './TaskController';
 
 export class TaskRouter {
   private taskController: TaskController;

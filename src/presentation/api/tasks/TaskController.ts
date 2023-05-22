@@ -11,16 +11,10 @@ export class TaskController {
 
   async createTask(req: any, res: any): Promise<void> {
     const taskData = req.body;
-    console.log('+++++++++++++++++++')
-      console.log('taskData == ',taskData)
-      console.log('+++++++++++++++++++')
     try {
       const task: TaskDTO = await this.createTaskUseCase.execute(taskData);
       res.status(201).json({ task });
     } catch (error) {
-      console.log('+++++++++++++++++++')
-      console.log(error)
-      console.log('+++++++++++++++++++')
       res.status(500).json({ message: 'Internal server error' });
     }
   }

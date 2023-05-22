@@ -1,5 +1,5 @@
 // test/presentation/api/controllers/TaskController.test.ts
-import { TaskController } from '../../../../src/presentation/api/controllers/TaskController';
+import { TaskController } from './TaskController';
 import { ICreateTask } from '../../../../src/application/usecases/ICreateTask';
 import { TaskDTO } from '../../../../src/application/dtos/TaskDTO';
 
