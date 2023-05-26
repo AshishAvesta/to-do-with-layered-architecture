@@ -3,9 +3,8 @@ import { Task } from '../../domain/entities/Task';
 import { IGetTasksUseCase } from './IGetTasksUseCase';
 
 export class GetTasksUseCase implements IGetTasksUseCase {
-  private getTasks: IGetTasks
-  constructor(getTasks: IGetTasks) {
-    this.getTasks = getTasks;
+  constructor(private getTasks: IGetTasks) {
+    
   }
 
   async execute(): Promise<Task[]> {
