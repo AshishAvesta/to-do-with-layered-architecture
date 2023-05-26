@@ -1,8 +1,9 @@
 // src/domain/services/CreateTaskService.ts
 import { Task } from '../entities/Task';
 import { ITaskRepository } from '../interfaces/ITaskRepository';
+import { ICreateTaskService } from './ICreateTaskService';
 
-export class CreateTaskService {
+export class CreateTaskService implements ICreateTaskService {
   private taskRepository: ITaskRepository;
 
   constructor(taskRepository: ITaskRepository) {

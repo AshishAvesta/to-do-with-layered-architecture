@@ -9,6 +9,7 @@ describe('CreateTaskService', () => {
     taskRepositoryMock = {
       save: jest.fn().mockImplementation((task) => Promise.resolve({ ...task, id: '1' })),
       getById: jest.fn(),
+      getTasks:jest.fn()
     };
     createTaskService = new CreateTaskService(taskRepositoryMock);
   });
