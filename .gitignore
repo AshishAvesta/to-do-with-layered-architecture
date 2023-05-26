@@ -1,0 +1,8 @@
+/node_modules
+/.tmp
+/logs
+/public
+/.npm
+/server/TempImage
+/build_files
+*_sign.*
