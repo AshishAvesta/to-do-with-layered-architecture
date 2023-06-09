@@ -1,6 +1,5 @@
-// src/application/usecases/CreateTask.ts
-import { Task } from '../../domain/entities/Task';
-import { ICreateTaskService } from '../../domain/services/ICreateTaskService';
+import { Task } from '../../../domain/entities/Task';
+import { ICreateTaskService } from '../../../domain/interfaces/ICreateTaskService';
 
 export class CreateTask {
   private createTaskService: ICreateTaskService;

@@ -6,3 +6,4 @@
 /server/TempImage
 /build_files
 *_sign.*
+.env

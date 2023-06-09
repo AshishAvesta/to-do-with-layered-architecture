@@ -1,17 +1,20 @@
 import express from 'express';
 import { TaskRouter } from './TaskRouter';
 import { TaskController } from './TaskController';
-import { ICreateTask } from '../../../application/usecases/ICreateTask';
 import { ITaskRepository } from '../../../domain/interfaces/ITaskRepository';
 import { TaskRepository } from '../../../infrastructure/persistence/repositories/TaskRepository';
-import { CreateTaskService } from '../../../domain/services/CreateTaskService';
-import { CreateTask } from '../../../application/usecases/CreateTask';
-import { ICreateTaskService } from '../../../domain/services/ICreateTaskService';
+import { CreateTask } from '../../../application/usecases/tasks/CreateTask';
+import { ICreateTaskService } from '../../../domain/interfaces/ICreateTaskService';
 import { IModule } from '../IModule';
 import { IGetTasks } from '../../../domain/interfaces/IGetTasks';
-import { GetTasksService } from '../../../domain/services/GetTasksService';
-import { IGetTasksUseCase } from '../../../application/usecases/IGetTasksUseCase';
-import { GetTasksUseCase } from '../../../application/usecases/GetTasksUseCase';
+import { GetTasksUseCase } from '../../../application/usecases/tasks/GetTasksUseCase';
+import { AuthenticationMiddleware } from '../middleware/AuthenticationMiddleware';
+import { ITokenService } from '../../../domain/interfaces/ITokenService';
+import { JwtService } from '../../../infrastructure/utils/JwtService';
+import { ICreateTask } from '../../../application/usecases/tasks/ICreateTask';
+import { IGetTasksUseCase } from '../../../application/usecases/tasks/IGetTasksUseCase';
+import { CreateTaskService } from '../../../domain/services/tasks/CreateTaskService';
+import { GetTasksService } from '../../../domain/services/tasks/GetTasksService';
 
 
 
@@ -25,7 +28,10 @@ export class TaskModule implements IModule {
         const getTaskUsecase:IGetTasksUseCase = new GetTasksUseCase(getTaskService);
 
         const taskController = new TaskController(createTaskUsecase,getTaskUsecase);
-        const taskRouter = new TaskRouter(taskController);
+        const jwtService:ITokenService = new JwtService();
+        const authMiddleware = new AuthenticationMiddleware(jwtService);
+        const taskRouter = new TaskRouter(taskController,authMiddleware);
+       
         // Register the task router under '/tasks'
         app.use('/tasks', taskRouter.router());
     }

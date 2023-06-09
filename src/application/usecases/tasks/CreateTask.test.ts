@@ -1,7 +1,5 @@
-// test/application/usecases/CreateTask.test.ts
-
-import { CreateTask } from '../../../src/application/usecases/CreateTask';
-import { ICreateTaskService } from '../../../src/domain/services/ICreateTaskService';
+import { CreateTask } from './CreateTask';
+import { ICreateTaskService } from '../../../domain/interfaces/ICreateTaskService';
 
 describe('CreateTask', () => {
   let createTaskServiceMock: jest.Mocked<ICreateTaskService>;
@@ -19,6 +17,7 @@ describe('CreateTask', () => {
       description: 'Study for the exam',
       dueDate: '2023-06-30',
       priority: 'high',
+      user_id:1
     };
 
     await createTask.execute(taskData);
@@ -26,5 +25,4 @@ describe('CreateTask', () => {
     expect(createTaskServiceMock.execute).toHaveBeenCalledWith(taskData);
   });
 
-  // Additional tests could include error handling, invalid input, etc.
 });

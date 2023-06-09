@@ -1,5 +1,6 @@
-import { CreateTaskService } from '../../../src/domain/services/CreateTaskService';
-import { ITaskRepository } from '../../../src/domain/interfaces/ITaskRepository';
+import { ITaskRepository } from "../../interfaces/ITaskRepository";
+import { CreateTaskService } from "./CreateTaskService";
+
 
 describe('CreateTaskService', () => {
   let taskRepositoryMock: jest.Mocked<ITaskRepository>;
@@ -19,6 +20,7 @@ describe('CreateTaskService', () => {
       description: 'Study for the exam',
       dueDate: '2023-06-30',
       priority: 'high',
+      user_id:1
     };
 
     const createdTask = await createTaskService.execute(taskData);
@@ -30,6 +32,4 @@ describe('CreateTaskService', () => {
       ...taskData,
     });
   });
-
-  // Additional tests could include invalid data, saving errors, etc.
 });

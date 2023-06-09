@@ -1,13 +1,11 @@
-// src/infrastructure/config/database.ts
-
 import { Pool } from 'pg';
 
 const pool = new Pool({
-  host: '192.168.1.110',
+  host: process.env.DB_HOST,
   port: 5432,
-  user: 'postgres',
-  password: 'avesta',
-  database: 'todo',
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME
 });
 
 export default pool;

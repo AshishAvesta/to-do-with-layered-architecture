@@ -1,7 +1,7 @@
-// src/presentation/api/controllers/TaskController.ts
-import { ICreateTask } from '../../../application/usecases/ICreateTask';
 import { TaskDTO } from '../../../application/dtos/TaskDTO';
-import { IGetTasksUseCase } from '../../../application/usecases/IGetTasksUseCase';
+import { ICreateTask } from '../../../application/usecases/tasks/ICreateTask';
+import { IGetTasksUseCase } from '../../../application/usecases/tasks/IGetTasksUseCase';
+import { Task } from '../../../domain/entities/Task';
 
 export class TaskController {
   private createTaskUseCase: ICreateTask;
@@ -13,7 +13,10 @@ export class TaskController {
   }
 
   async createTask(req: any, res: any): Promise<void> {
-    const taskData = req.body;
+  
+    const { description, dueDate, priority } = req.body;
+    const user_id = req.user.id;
+    const taskData = new Task(description, dueDate, priority, user_id);
     try {
       const task: TaskDTO = await this.createTaskUseCase.execute(taskData);
       res.status(201).json({ task });
@@ -23,8 +26,12 @@ export class TaskController {
   }
 
   async getTasks(req: any, res: any): Promise<void> {
+    const limit = req.query.limit || null;
+    const offset = req.query.offset || null;
+    const userId = req.user.id || null;
+
     try {
-      const tasks = await this.getTasksUseCase.execute();
+      const tasks = await this.getTasksUseCase.execute(limit, offset, userId);
       res.status(200).json(tasks);
     } catch (error) {
       if (error instanceof Error) {

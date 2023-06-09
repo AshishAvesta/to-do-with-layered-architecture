@@ -1,5 +1,4 @@
 import { Task } from '../entities/Task';
-
 export interface IGetTasks {
-  execute(): Promise<Task[]>;
+  execute(limit?: number, offset?: number, userId?: string): Promise<Task[]>;
 }

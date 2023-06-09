@@ -1,21 +1,3 @@
-/* import { check, validationResult } from 'express-validator';
-import { Request, Response, NextFunction } from 'express';
-
-export const validateCreateTask = [
-  check('priority').isString().notEmpty().withMessage('Priority must be a non-empty string'),
-  check('description').isString().notEmpty().withMessage('Description must be a non-empty string'),
-  check('dueDate').isString().withMessage('Due date must be a non-empty string'),
-  (req: Request, res: Response, next: NextFunction) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      const errorMessage = errors.array().map(error => error.msg).join(', ');
-      return res.status(400).json({ error: errorMessage });
-    }
-    next();
-  },
-]; */
-
-// src/presentation/api/middlewares/TaskValidator.ts
 import { body, validationResult } from 'express-validator';
 import { Request, Response, NextFunction } from 'express';
 
